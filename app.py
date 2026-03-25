@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_login import LoginManager, login_required, current_user
 from models import db, User
 from config import get_config
+from customers import customer_bp
+
 
 # import your auth blueprint
 from auth import auth_bp, login_manager
@@ -9,8 +11,7 @@ from auth import auth_bp, login_manager
 app = Flask(__name__)
 get_config(app)
 
-# --- init database ---
-db.init_app(app)
+
 
 with app.app_context():
     db.create_all()
@@ -21,6 +22,7 @@ login_manager.login_view = "auth.login"
 
 # --- register blueprint ---
 app.register_blueprint(auth_bp)
+app.register_blueprint(customer_bp)
 
 
 # ------------------------
