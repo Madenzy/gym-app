@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import re
 from datetime import datetime, date
 
@@ -56,14 +57,61 @@ _ALL_NAV = [
     {"name": "Register",    "url": "/register"},
     {"name": "Logout",      "url": "/logout"},
 ]
+=======
+>>>>>>> cc240c4 (update)
 
 # Convenience subsets (index references into _ALL_NAV above)
 NAV = {
+<<<<<<< HEAD
     "public":    [_ALL_NAV[i] for i in (0, 1, 2, 3)],
     "login":     [_ALL_NAV[i] for i in (0, 1, 3, 6)],
     "register":  [_ALL_NAV[i] for i in (0, 1, 3, 5)],
     "dashboard": [_ALL_NAV[i] for i in (0, 3, 4, 7)],
     "admin":     _ALL_NAV,
+=======
+    "public": [
+        {"name": "Home",      "url": "/"},
+        {"name": "About",     "url": "/about"},
+        {"name": "Shop",      "url": "/shop"},
+        {"name": "Producers", "url": "/producers"},
+        {"name": "Contact",   "url": "/contact-us"},
+    ],
+    "login": [
+        {"name": "Home",     "url": "/"},
+        {"name": "About",    "url": "/about"},
+        {"name": "Shop",     "url": "/shop"},
+        {"name": "Register", "url": "/register"},
+    ],
+    "register": [
+        {"name": "Home",  "url": "/"},
+        {"name": "About", "url": "/about"},
+        {"name": "Shop",  "url": "/shop"},
+        {"name": "Login", "url": "/login"},
+    ],
+    "customer": [
+        {"name": "Home",      "url": "/"},
+        {"name": "Shop",      "url": "/shop"},
+        {"name": "My Orders", "url": "/orders"},
+        {"name": "Dashboard", "url": "/dashboard"},
+        {"name": "Logout",    "url": "/logout"},
+    ],
+    "producer": [
+        {"name": "Home",         "url": "/"},
+        {"name": "Dashboard",    "url": "/producer/dashboard"},
+        {"name": "Manage Stock", "url": "/producer/manage-stock"},
+        {"name": "Settings",     "url": "/producer/settings"},
+        {"name": "Logout",       "url": "/logout"},
+    ],
+    "admin": [
+        {"name": "Home",             "url": "/"},
+        {"name": "Admin Dashboard",  "url": "/admin/dashboard"},
+        {"name": "Manage Accounts",  "url": "/admin/manage-accounts"},
+        {"name": "Manage Products",  "url": "/admin/manage-products"},
+        {"name": "All Orders",       "url": "/admin/orders"},
+        {"name": "Settings",         "url": "/account-settings"},
+        {"name": "Logout",           "url": "/logout"},
+    ],
+>>>>>>> cc240c4 (update)
 }
 
 
@@ -78,6 +126,7 @@ def nav_for(user=None) -> list:
     return NAV["dashboard"]
 
 
+<<<<<<< HEAD
 # ─────────────────────────────────────────────────────────────────────────────
 # VALIDATION HELPERS
 # ─────────────────────────────────────────────────────────────────────────────
@@ -279,3 +328,5 @@ def logout():
     flash("You have been logged out successfully.", "success")
     return redirect(url_for("auth.login"))
 
+=======
+>>>>>>> cc240c4 (update)
