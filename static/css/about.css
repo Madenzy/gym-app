@@ -1,0 +1,255 @@
+:root {
+    --brand-navy: #23394d;
+    --brand-orange: #f26532;
+    --peach: #fcd9b8;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.about-hero {
+    background: url('/static/images/zoshua-colah-s4u1iKwokcc-unsplash.jpg') center/cover no-repeat;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(35, 57, 77, 0.65);
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 700px;
+    padding: 20px;
+}
+
+.about-hero-content h1 {
+    font-size: 3rem;
+    margin: 0 0 15px 0;
+    font-weight: 800;
+}
+
+.about-hero-content h1 span { color: var(--brand-orange); }
+
+.about-hero-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ─── Mission ────────────────────────────────────────────────────────────── */
+.about-mission {
+    padding: 80px 0;
+    background: white;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.mission-text h2 {
+    font-size: 2rem;
+    color: var(--brand-navy);
+    margin: 0 0 20px 0;
+}
+
+.mission-text p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.mission-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ─── Values ─────────────────────────────────────────────────────────────── */
+.about-values {
+    padding: 80px 0;
+    background: #fafaf8;
+}
+
+.about-values h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--brand-navy);
+    margin-bottom: 40px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.value-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+}
+
+.value-icon { font-size: 2.5rem; margin-bottom: 15px; }
+.value-card h3 { color: var(--brand-navy); margin: 0 0 10px 0; font-size: 1.1rem; }
+.value-card p { color: #666; font-size: 0.9rem; line-height: 1.5; margin: 0; }
+
+/* ─── Meet Producers ─────────────────────────────────────────────────────── */
+.meet-producers {
+    padding: 80px 0;
+    background: white;
+}
+
+.meet-producers h2 {
+    font-size: 2rem;
+    color: var(--brand-navy);
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.producers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.producer-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    background: white;
+}
+
+.producer-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.producer-info { padding: 20px; }
+.producer-info h3 { margin: 0 0 5px 0; color: var(--brand-navy); }
+
+.farm-name {
+    color: var(--brand-orange);
+    font-size: 0.85rem;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.producer-info p { color: #666; font-size: 0.88rem; line-height: 1.5; margin: 0 0 15px 0; }
+
+.producer-badge {
+    background: var(--peach);
+    color: var(--brand-navy);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* ─── Benefits ───────────────────────────────────────────────────────────── */
+.about-benefits {
+    padding: 80px 0;
+    background: #fafaf8;
+}
+
+.about-benefits h2 {
+    font-size: 2rem;
+    color: var(--brand-navy);
+    margin-bottom: 40px;
+}
+
+.benefits-list { display: flex; flex-direction: column; gap: 25px; }
+
+.benefit-item {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.benefit-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--brand-orange);
+    line-height: 1;
+    min-width: 50px;
+}
+
+.benefit-item h4 { color: var(--brand-navy); margin: 0 0 6px 0; font-size: 1rem; }
+.benefit-item p { color: #666; margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+/* ─── CTA ────────────────────────────────────────────────────────────────── */
+.about-cta {
+    padding: 80px 20px;
+    background: var(--brand-navy);
+    text-align: center;
+}
+
+.cta-box { max-width: 600px; margin: 0 auto; color: white; }
+.cta-box h2 { font-size: 2rem; margin-bottom: 12px; }
+.cta-box p { opacity: 0.85; margin-bottom: 30px; font-size: 1rem; }
+
+.cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+.cta-buttons .btn-filled {
+    background: var(--brand-orange);
+    color: white;
+    padding: 13px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+
+.cta-buttons .btn-filled:hover { background: #ff8d60; }
+
+.cta-buttons .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 13px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: border-color 0.3s;
+}
+
+.cta-buttons .btn-outline:hover { border-color: white; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .mission-grid { grid-template-columns: 1fr; gap: 30px; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .producers-grid { grid-template-columns: 1fr 1fr; }
+    .about-hero-content h1 { font-size: 2rem; }
+}
+
+@media (max-width: 600px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .producers-grid { grid-template-columns: 1fr; }
+}

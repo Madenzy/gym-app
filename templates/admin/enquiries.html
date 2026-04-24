@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block head %}Enquiries — GreenField Local Hub{% endblock %}
+
+{% block extra_head %}
+<style>
+.enquiry-type {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.type-general        { background: #e8f4fd; color: #1a6fa8; }
+.type-producer       { background: #e6f9ee; color: #1a7a3c; }
+.type-order          { background: #fff4e5; color: #b35c00; }
+.type-feedback       { background: #f3e8ff; color: #6b21a8; }
+.type-other          { background: #f0f0f0; color: #555; }
+
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.filter-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.15s;
+}
+.filter-btn:hover, .filter-btn.active { background: #f26532; color: #fff; border-color: #f26532; }
+
+.enquiry-date { white-space: nowrap; }
+.enquiry-message { max-width: 360px; white-space: pre-wrap; word-break: break-word; }
+</style>
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/css/dashboard.css">
+<link rel="stylesheet" href="/static/css/producer.css">
+
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h1>GL<span>H</span></h1>
+            <p>Admin Panel</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin.dashboard') }}"><i class="icon">📊</i> Dashboard</a>
+            <a href="{{ url_for('admin.manage_accounts') }}"><i class="icon">👥</i> Manage Accounts</a>
+            <a href="{{ url_for('admin.manage_products') }}"><i class="icon">🌿</i> Manage Products</a>
+            <a href="{{ url_for('admin.orders') }}"><i class="icon">📋</i> All Orders</a>
+            <a href="{{ url_for('admin.producers') }}"><i class="icon">🧑‍🌾</i> Producers</a>
+            <a href="{{ url_for('admin.enquiries') }}" class="active"><i class="icon">✉️</i> Enquiries</a>
+            <a href="{{ url_for('auth.account_settings') }}"><i class="icon">⚙️</i> Account Settings</a>
+            <a href="{{ url_for('auth.logout') }}"><i class="icon">🚪</i> Logout</a>
+        </nav>
+        <div class="sidebar-user">
+            <div class="user-avatar">{{ user.get_initials() }}</div>
+            <div class="user-info">
+                <strong>{{ user.name }}</strong>
+                <span>Administrator</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <div class="header-left">
+                <h2>Enquiries</h2>
+                <p class="subtitle">All customer enquiries submitted through the site.</p>
+            </div>
+        </header>
+
+        <!-- Type filter -->
+        <div class="filter-bar">
+            <a href="{{ url_for('admin.enquiries') }}" class="filter-btn {% if not type_filter %}active{% endif %}">All</a>
+            <a href="{{ url_for('admin.enquiries', type='General Inquiry') }}" class="filter-btn {% if type_filter == 'General Inquiry' %}active{% endif %}">General Inquiry</a>
+            <a href="{{ url_for('admin.enquiries', type='Want to be a Producer') }}" class="filter-btn {% if type_filter == 'Want to be a Producer' %}active{% endif %}">Want to be a Producer</a>
+            <a href="{{ url_for('admin.enquiries', type='Order Support') }}" class="filter-btn {% if type_filter == 'Order Support' %}active{% endif %}">Order Support</a>
+            <a href="{{ url_for('admin.enquiries', type='Product Feedback') }}" class="filter-btn {% if type_filter == 'Product Feedback' %}active{% endif %}">Product Feedback</a>
+            <a href="{{ url_for('admin.enquiries', type='Other') }}" class="filter-btn {% if type_filter == 'Other' %}active{% endif %}">Other</a>
+        </div>
+
+        {% if enquiries %}
+        <section class="recent-orders">
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in enquiries %}
+                    {% set t = e.subject or 'General Inquiry' %}
+                    <tr>
+                        <td class="enquiry-date">{{ e.submitted_date.strftime('%d %b %Y') }}</td>
+                        <td>{{ e.name }}</td>
+                        <td>{{ e.email }}</td>
+                        <td>
+                            {% if t == 'Want to be a Producer' %}
+                                <span class="enquiry-type type-producer">{{ t }}</span>
+                            {% elif t == 'Order Support' %}
+                                <span class="enquiry-type type-order">{{ t }}</span>
+                            {% elif t == 'Product Feedback' %}
+                                <span class="enquiry-type type-feedback">{{ t }}</span>
+                            {% elif t == 'Other' %}
+                                <span class="enquiry-type type-other">{{ t }}</span>
+                            {% else %}
+                                <span class="enquiry-type type-general">{{ t }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="enquiry-message">{{ e.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">✉️</div>
+            <h3>No enquiries{% if type_filter %} of this type{% endif %}</h3>
+            <p>{% if type_filter %}No "{{ type_filter }}" enquiries found.{% else %}Customer enquiries will appear here once submitted.{% endif %}</p>
+        </div>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}
